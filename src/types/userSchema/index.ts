@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 export const userSchema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  userName: yup
+  username: yup
     .string()
     .required('Username is required')
     .matches(

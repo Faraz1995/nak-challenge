@@ -6,23 +6,25 @@ import TableHeader from '../components/table/TableHeader'
 import TableRow from '../components/table/TableRow'
 import TableHead from '../components/table/TableHead'
 import TableCell from '../components/table/TableCell'
-import { mockData } from '../assets/mockData'
 import Pagination from '../components/Pagination'
 import { Link } from 'react-router-dom'
+import { useUserStore } from '../store/useStore'
+import { status } from '../types/users'
 
 const itemsPerPage: number = 5
 
 const Home: React.FC = () => {
   const navigate = useNavigate()
+  const users = useUserStore((state) => state.users)
 
   const [page, setPage] = useState<number>(1)
 
   const indexOfLastItem = page * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
 
-  const currentItems = mockData.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = users!.slice(indexOfFirstItem, indexOfLastItem)
 
-  const totalPages = Math.ceil(mockData.length / itemsPerPage)
+  const totalPages = Math.ceil(users!.length / itemsPerPage)
 
   const handleNextPage = () => {
     setPage((prev) => Math.min(prev + 1, totalPages))
@@ -32,16 +34,14 @@ const Home: React.FC = () => {
     setPage((prev) => Math.max(prev - 1, 1))
   }
 
-  const statusClassGenerator = (status: string | undefined) => {
+  const statusClassGenerator = (status: status) => {
     switch (status) {
       case 'Active':
         return styles.activeStatus
       case 'Not Active':
         return styles.inActiveStatus
-      case 'Unknown':
-        return styles.unknwonStatus
       default:
-        break
+        return styles.unknwonStatus
     }
   }
 

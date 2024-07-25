@@ -1,7 +1,7 @@
-type status = 'Active' | 'Not Active' | null | undefined
+export type status = 'Active' | 'Not Active' | null | undefined
 
 export interface User {
-  id: number
+  id: string
   name: string
   username: string
   email: string

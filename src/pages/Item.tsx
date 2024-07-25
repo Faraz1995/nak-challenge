@@ -2,19 +2,20 @@ import { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { css } from '@emotion/react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import styles from './home.module.css'
 import TextInput from '../components/TextInput'
 import { userSchema } from '../types/userSchema'
 import Button from '../components/Button'
 import { mockData } from '../assets/mockData'
+import { useUserStore } from '../store/useStore'
 
 type status = 'Active' | 'Not Active' | null | undefined
 
-const options = [
-  { value: 'Active', label: 'active' },
-  { value: 'Not Active', label: 'not active' }
-]
+// const options = [
+//   { value: 'Active', label: 'active' },
+//   { value: 'Not Active', label: 'not active' }
+// ]
 
 const labelStyle = css`
   display: block;
@@ -24,7 +25,7 @@ const labelStyle = css`
 
 interface IUserFormInputs {
   name: string
-  userName: string
+  username: string
   email: string
   phone: string
   status?: status
@@ -32,10 +33,14 @@ interface IUserFormInputs {
 
 const Item = () => {
   const params = useParams()
+  const users = useUserStore((state) => state.users)
+  const setUsers = useUserStore((state) => state.setUsers)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors, isValid }
   } = useForm<IUserFormInputs>({
     resolver: yupResolver(userSchema),
@@ -47,11 +52,9 @@ const Item = () => {
       (item) => item.id.toString() === params.id?.toString()
     )
 
-    console.log(editedItem)
-
     if (editedItem) {
       setValue('name', editedItem.name)
-      setValue('userName', editedItem.username)
+      setValue('username', editedItem.username)
       setValue('email', editedItem.email)
       setValue('phone', editedItem.phone)
       setValue('status', editedItem.status)
@@ -59,7 +62,27 @@ const Item = () => {
   }, [params.id, setValue])
 
   const onSubmit: SubmitHandler<IUserFormInputs> = (data) => {
-    console.log(data)
+    if (params.id) {
+      //edit mode
+      const item = users.find((item) => item.id.toString() === params.id?.toString())
+      if (item) {
+        const editedItem = { id: params.id, ...data }
+        const updatedArray = users.map((item) =>
+          item.id === editedItem.id ? editedItem : item
+        )
+        setUsers(updatedArray)
+      }
+      navigate('/')
+    } else {
+      //create mode
+      const newItem = {
+        id: (Number(users[users?.length - 1].id) + 1).toString(),
+        ...data
+      }
+      const newUsers = [...users, newItem]
+      setUsers(newUsers)
+      reset()
+    }
   }
 
   return (
@@ -82,8 +105,8 @@ const Item = () => {
                 name={'username'}
                 label='Username'
                 required={true}
-                register={register('userName')}
-                error={errors.userName}
+                register={register('username')}
+                error={errors.username}
               />
 
               <TextInput
