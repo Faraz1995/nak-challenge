@@ -28,6 +28,19 @@ const Home: React.FC = () => {
     setPage((prev) => Math.max(prev - 1, 1))
   }
 
+  const statusClassGenerator = (status: string | undefined) => {
+    switch (status) {
+      case 'Active':
+        return styles.activeStatus
+      case 'Not Active':
+        return styles.inActiveStatus
+      case 'Unknown':
+        return styles.unknwonStatus
+      default:
+        break
+    }
+  }
+
   return (
     <div>
       <p className={styles.title}>
@@ -36,7 +49,7 @@ const Home: React.FC = () => {
       <div className={styles.tableContainer}>
         <div className={styles.itemTitle}>
           <p>Items</p>
-          <div>Add new Item +</div>
+          <div className={styles.addBtn}>Add new Item +</div>
         </div>
         <Table>
           <TableHeader>
@@ -56,7 +69,15 @@ const Home: React.FC = () => {
               <TableCell>@{item.username}</TableCell>
               <TableCell>{item.email}</TableCell>
               <TableCell>{item.phone}</TableCell>
-              <TableCell>{item.status}</TableCell>
+              <TableCell>
+                <div
+                  className={`${styles.statusContainer} ${statusClassGenerator(
+                    item.status
+                  )}`}
+                >
+                  {item.status}
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </Table>

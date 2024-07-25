@@ -23,3 +23,28 @@
   width: 90%;
   margin: 0 auto;
 }
+.statusContainer{
+  font-size: 0.7rem;
+  border-radius: 30px;
+  display: inline;
+  padding: 0.5rem;
+}
+.activeStatus{
+  background-color: #EBFFF1;
+  color: #0FBD66;
+}
+.inActiveStatus{
+  background-color: #FCEEEE;
+  color:#DC362E;
+}
+.unknownStatus{
+  background-color: #F1F1F1;
+  color: #242424;
+}
+.addBtn{
+  background-color: #242424;
+  color: #fff;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
