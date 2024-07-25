@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './home.module.css'
 import Table from '../components/table/Table'
 import TableHeader from '../components/table/TableHeader'
@@ -7,10 +8,13 @@ import TableHead from '../components/table/TableHead'
 import TableCell from '../components/table/TableCell'
 import { mockData } from '../assets/mockData'
 import Pagination from '../components/Pagination'
+import { Link } from 'react-router-dom'
 
 const itemsPerPage: number = 5
 
 const Home: React.FC = () => {
+  const navigate = useNavigate()
+
   const [page, setPage] = useState<number>(1)
 
   const indexOfLastItem = page * itemsPerPage
@@ -49,7 +53,9 @@ const Home: React.FC = () => {
       <div className={styles.tableContainer}>
         <div className={styles.itemTitle}>
           <p>Items</p>
-          <div className={styles.addBtn}>Add new Item +</div>
+          <div onClick={() => navigate('/items/new')} className={styles.addBtn}>
+            Add new Item +
+          </div>
         </div>
         <Table>
           <TableHeader>
@@ -63,22 +69,24 @@ const Home: React.FC = () => {
             </TableRow>
           </TableHeader>
           {currentItems.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.id}</TableCell>
-              <TableCell>{item.name}</TableCell>
-              <TableCell>@{item.username}</TableCell>
-              <TableCell>{item.email}</TableCell>
-              <TableCell>{item.phone}</TableCell>
-              <TableCell>
-                <div
-                  className={`${styles.statusContainer} ${statusClassGenerator(
-                    item.status
-                  )}`}
-                >
-                  {item.status}
-                </div>
-              </TableCell>
-            </TableRow>
+            <Link key={item.id} to={`/items/${item.id}`}>
+              <TableRow>
+                <TableCell>{item.id}</TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>@{item.username}</TableCell>
+                <TableCell>{item.email}</TableCell>
+                <TableCell>{item.phone}</TableCell>
+                <TableCell>
+                  <div
+                    className={`${styles.statusContainer} ${statusClassGenerator(
+                      item.status
+                    )}`}
+                  >
+                    {item.status}
+                  </div>
+                </TableCell>
+              </TableRow>
+            </Link>
           ))}
         </Table>
       </div>
