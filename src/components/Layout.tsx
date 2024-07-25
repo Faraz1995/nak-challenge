@@ -6,7 +6,9 @@ const Layout = () => {
 
   const checkActiveItemLink = () => {
     const { pathname } = location
-    if (pathname.includes('/items')) {
+    if (pathname === '/') {
+      return styles.activeLink
+    } else if (pathname.includes('/items')) {
       return styles.activeLink
     } else {
       return styles.link
