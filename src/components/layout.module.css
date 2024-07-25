@@ -1,0 +1,31 @@
+.header{
+  width: 100%;
+  border-bottom: 1px solid #ABABAB;
+}
+.nav{
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+.list{
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 70%;
+  max-width: 500px;
+  color: #ABABAB;
+}
+.list a{
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-bottom:1rem ;
+}
+.link{
+  color: #ABABAB;
+}
+.activeLink{
+  border-bottom: 1px solid black;
+  color: black;
+  height: 100%;
+}
