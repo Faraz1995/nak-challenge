@@ -1,0 +1,21 @@
+.title{
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.listTitle{
+  font-weight: bold;
+  font-size: 3rem;
+}
+.itemTitle{
+  display: flex;
+  justify-content: space-between;
+  padding:1rem;
+}
+.tableContainer{
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+}

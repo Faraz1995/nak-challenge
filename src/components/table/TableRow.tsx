@@ -3,13 +3,13 @@ import React from 'react'
 import { css } from '@emotion/react'
 
 const tableRowStyle = css`
+  width: 100%;
   border-bottom: 1px solid #dddddd;
-  &:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  &:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  // &:nth-of-type(even) {
+  //   background-color: #f3f3f3;
+  // }
 `
 
 interface props {
@@ -17,7 +17,7 @@ interface props {
 }
 
 const TableRow = ({ children }: props) => {
-  return <tr css={tableRowStyle}>{children}</tr>
+  return <div css={tableRowStyle}>{children}</div>
 }
 
 export default TableRow

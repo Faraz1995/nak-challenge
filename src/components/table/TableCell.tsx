@@ -10,7 +10,7 @@ interface props {
 }
 
 const TableCell = ({ children }: props) => {
-  return <tr css={tableCellStyle}>{children}</tr>
+  return <div css={tableCellStyle}>{children}</div>
 }
 
 export default TableCell

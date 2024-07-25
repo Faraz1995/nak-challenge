@@ -3,8 +3,8 @@ import React from 'react'
 import { css } from '@emotion/react'
 
 const tableHeaderStyle = css`
-  background-color: #009879;
-  color: #ffffff;
+  background-color: #e6e6e6;
+  color: #000;
   text-align: left;
   font-weight: bold;
 `
@@ -13,8 +13,8 @@ interface props {
   children: React.ReactNode
 }
 
-const TableHead = ({ children }: props) => {
-  return <thead css={tableHeaderStyle}>{children}</thead>
+const TableHeader = ({ children }: props) => {
+  return <div css={tableHeaderStyle}>{children}</div>
 }
 
-export default TableHead
+export default TableHeader

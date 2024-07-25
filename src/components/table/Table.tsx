@@ -4,13 +4,9 @@ import { css } from '@emotion/react'
 
 const tableStyle = css`
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 1em;
+  font-size: 1rem;
   min-width: 400px;
-  border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 `
 
 interface props {
@@ -18,7 +14,7 @@ interface props {
 }
 
 const Table = ({ children }: props) => {
-  return <table css={tableStyle}>{children}</table>
+  return <div css={tableStyle}>{children}</div>
 }
 
 export default Table
