@@ -12,6 +12,7 @@ import { Status } from '../types/users'
 import Select from '../components/CustomSelect'
 
 const options = [
+  { value: '', label: 'Select...' },
   { value: 'active', label: 'Active' },
   { value: 'not_active', label: 'Not Active' }
 ]
