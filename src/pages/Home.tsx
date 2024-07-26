@@ -41,7 +41,7 @@ const Home: React.FC = () => {
       case 'not_active':
         return styles.inActiveStatus
       default:
-        return styles.unknwonStatus
+        return styles.unknownStatus
     }
   }
 
@@ -79,26 +79,28 @@ const Home: React.FC = () => {
               <TableHead>Status</TableHead>
             </TableRow>
           </TableHeader>
-          {currentItems.map((item) => (
-            <Link key={item.id} to={`/items/${item.id}`}>
-              <TableRow>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>@{item.username}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.phone}</TableCell>
-                <TableCell>
-                  <div
-                    className={`${styles.statusContainer} ${statusClassGenerator(
-                      item.status
-                    )}`}
-                  >
-                    {statusTextGenerator(item.status)}
-                  </div>
-                </TableCell>
-              </TableRow>
-            </Link>
-          ))}
+          <div className={styles.tableBody}>
+            {currentItems.map((item) => (
+              <Link key={item.id} to={`/items/${item.id}`}>
+                <TableRow>
+                  <TableCell>{item.id}</TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>@{item.username}</TableCell>
+                  <TableCell>{item.email}</TableCell>
+                  <TableCell>{item.phone}</TableCell>
+                  <TableCell>
+                    <div
+                      className={`${styles.statusContainer} ${statusClassGenerator(
+                        item.status
+                      )}`}
+                    >
+                      {statusTextGenerator(item.status)}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              </Link>
+            ))}
+          </div>
         </Table>
       </div>
       <div className={styles.paginationContainer}>
