@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { css } from '@emotion/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate, useParams } from 'react-router-dom'
 import styles from './home.module.css'
@@ -10,17 +9,12 @@ import Button from '../components/Button'
 import { mockData } from '../assets/mockData'
 import { useUserStore } from '../store/useStore'
 import { Status } from '../types/users'
+import Select from '../components/CustomSelect'
 
-// const options = [
-//   { value: 'Active', label: 'active' },
-//   { value: 'Not Active', label: 'not active' }
-// ]
-
-const labelStyle = css`
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-`
+const options = [
+  { value: 'active', label: 'Active' },
+  { value: 'not_active', label: 'Not Active' }
+]
 
 interface IUserFormInputs {
   name: string
@@ -128,16 +122,12 @@ const Item = () => {
             </div>
 
             <div className={styles.row}>
-              <div className={styles.selectContainer}>
-                <label css={labelStyle} htmlFor='status'>
-                  Status
-                </label>
-                <select className={styles.select} id='status' {...register('status')}>
-                  <option value=''>Select...</option>
-                  <option value='active'>Active</option>
-                  <option value='not_active'>Not Active</option>
-                </select>
-              </div>
+              <Select
+                label='Status'
+                name='status'
+                options={options}
+                register={() => register('status')}
+              />
             </div>
           </div>
           <div className={styles.btnContainer}>
