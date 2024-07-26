@@ -7,7 +7,7 @@ export const mockData: User[] = [
     username: 'johndoe',
     email: 'john@example.com',
     phone: '123-456-7890',
-    status: 'Active'
+    status: 'active'
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ export const mockData: User[] = [
     username: 'janesmith',
     email: 'jane@example.com',
     phone: '234-567-8901',
-    status: 'Not Active'
+    status: 'not_active'
   },
   {
     id: '4',

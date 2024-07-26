@@ -1,4 +1,4 @@
-export type status = 'Active' | 'Not Active' | null | undefined
+export type Status = 'active' | 'not_active' | null | undefined
 
 export interface User {
   id: string
@@ -6,5 +6,5 @@ export interface User {
   username: string
   email: string
   phone: string
-  status?: status
+  status?: Status
 }

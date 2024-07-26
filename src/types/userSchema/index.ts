@@ -16,5 +16,5 @@ export const userSchema = yup.object().shape({
       /^[0-9]{10,}$/,
       'Phone number must be at least 10 digits long and contain only numbers'
     ),
-  status: yup.string().oneOf(['Active', 'Not Active']).nullable()
+  status: yup.string().oneOf(['active', 'not_active']).nullable()
 })

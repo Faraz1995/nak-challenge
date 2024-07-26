@@ -9,8 +9,7 @@ import { userSchema } from '../types/userSchema'
 import Button from '../components/Button'
 import { mockData } from '../assets/mockData'
 import { useUserStore } from '../store/useStore'
-
-type status = 'Active' | 'Not Active' | null | undefined
+import { Status } from '../types/users'
 
 // const options = [
 //   { value: 'Active', label: 'active' },
@@ -28,7 +27,7 @@ interface IUserFormInputs {
   username: string
   email: string
   phone: string
-  status?: status
+  status?: Status
 }
 
 const Item = () => {
@@ -135,8 +134,8 @@ const Item = () => {
                 </label>
                 <select className={styles.select} id='status' {...register('status')}>
                   <option value=''>Select...</option>
-                  <option value='Active'>Active</option>
-                  <option value='Not Active'>Not Active</option>
+                  <option value='active'>Active</option>
+                  <option value='not_active'>Not Active</option>
                 </select>
               </div>
             </div>

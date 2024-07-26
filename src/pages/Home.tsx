@@ -9,7 +9,7 @@ import TableCell from '../components/table/TableCell'
 import Pagination from '../components/Pagination'
 import { Link } from 'react-router-dom'
 import { useUserStore } from '../store/useStore'
-import { status } from '../types/users'
+import { Status } from '../types/users'
 
 const itemsPerPage: number = 5
 
@@ -34,14 +34,25 @@ const Home: React.FC = () => {
     setPage((prev) => Math.max(prev - 1, 1))
   }
 
-  const statusClassGenerator = (status: status) => {
+  const statusClassGenerator = (status: Status) => {
     switch (status) {
-      case 'Active':
+      case 'active':
         return styles.activeStatus
-      case 'Not Active':
+      case 'not_active':
         return styles.inActiveStatus
       default:
         return styles.unknwonStatus
+    }
+  }
+
+  const statusTextGenerator = (status: Status) => {
+    switch (status) {
+      case 'active':
+        return 'Active'
+      case 'not_active':
+        return 'Not Active'
+      default:
+        return 'Unknown'
     }
   }
 
@@ -82,7 +93,7 @@ const Home: React.FC = () => {
                       item.status
                     )}`}
                   >
-                    {item.status}
+                    {statusTextGenerator(item.status)}
                   </div>
                 </TableCell>
               </TableRow>
