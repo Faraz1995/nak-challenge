@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { User } from '../types/users'
 import { mockData } from '../assets/mockData'
 
