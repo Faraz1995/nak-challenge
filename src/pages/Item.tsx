@@ -6,7 +6,6 @@ import styles from './home.module.css'
 import TextInput from '../components/TextInput'
 import { userSchema } from '../types/userSchema'
 import Button from '../components/Button'
-import { mockData } from '../assets/mockData'
 import { useUserStore } from '../store/useStore'
 import { Status } from '../types/users'
 import Select from '../components/CustomSelect'
@@ -42,10 +41,7 @@ const Item = () => {
   })
 
   useEffect(() => {
-    const editedItem = mockData.find(
-      (item) => item.id.toString() === params.id?.toString()
-    )
-
+    const editedItem = users.find((item) => item.id.toString() === params.id?.toString())
     if (editedItem) {
       setValue('name', editedItem.name)
       setValue('username', editedItem.username)
