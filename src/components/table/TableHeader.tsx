@@ -1,8 +1,9 @@
 import React from 'react'
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
 const tableHeaderStyle = css`
+  width: 100%;
+  overflow-x: auto;
   background-color: #e6e6e6;
   color: #000;
   text-align: left;
